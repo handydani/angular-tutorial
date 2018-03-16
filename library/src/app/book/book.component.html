@@ -1,8 +1,12 @@
-<h3>Title: {{mybook.name}}</h3>
-<h4>Author: {{mybook.author}}</h4>
-<h4>Id: {{mybook.id}}</h4>
-<div>
-<input [(ngModel)]="mybook.name" placeholder="name">
-<input [(ngModel)]="mybook.author" placeholder="author">
-<input [(ngModel)]="mybook.id" placeholder="id">
+<ul class = "list-books">
+    <li *ngFor = "let i of displayBook" (click)="onSelect(i)">
+        <h4>Title: {{i.name}}</h4>
+        <h5>Author: {{i.author}}</h5>
+        <h5>Id: {{i.id}}</h5>
+    </li>
+</ul>
+<div *ngIf = "selectedBook">
+<input [(ngModel)]="selectedBook.name" placeholder="name">
+<input [(ngModel)]="selectedBook.author" placeholder="author">
+<input [(ngModel)]="selectedBook.id" placeholder="id">
 </div>

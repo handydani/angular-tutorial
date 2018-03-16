@@ -18,7 +18,10 @@ npm install -g @angular/cli
 ## Let's take a look at the final product...
 
 
+
 ## Let's begin!
+Protip, stay consistent with naming conventions, I myself got very confused so I tried my best to use distinct, descriptive names.
+
 
 ```
 ng new mybookshelf
@@ -154,8 +157,100 @@ imports: [
 ],
 ```
 
-Now that we can add input boxes
+Now that we can add input boxes just finish the rest by adding one for author and the id number
 
-# You used the double curly braces of interpolation to display the app title.
+### Listing Components
 
-## What is HTML/CSS? What is Javascript?
+Create a file called bookshelf.ts under app
+```
+import { bookClass } from './bookClass';
+
+export const BOOKS: bookClass[] = [
+
+    { name: 'GAME OF THRONES',
+     author: 'GEORGE RR MARTIN',
+     id: 1 },
+     { name: 'CLASH OF KINGS',
+      author: 'GEORGE RR MARTIN',
+      id: 2 },
+      { name: 'STORM OF SWORDS',
+       author: 'GEORGE RR MARTIN',
+       id: 3 },
+       { name: 'FEAST FOR CROWS',
+        author: 'GEORGE RR MARTIN',
+        id: 4 },
+        { name: 'DANCE OF DRAGONS',
+         author: 'GEORGE RR MARTIN',
+         id: 5 },
+         { name: 'WINDS OF WINTER',
+          author: 'GEORGE RR MARTIN',
+          id: 6 }
+];
+
+```
+
+This creates a constant array called BOOKS of type bookClass
+
+We then need to import this array file to book.component.ts
+
+```
+import { BOOKS } from '../bookshelf';
+
+```
+
+add a property to book.component.ts so that you can actually display the array
+
+```
+displayBook = BOOKS;
+```
+Now navigate to book.component.html to change the following
+
+``` html
+
+<ul class = "list-books">
+    <li *ngFor = "let i of displayBook">
+        <h4>Title: {{i.name}}</h4>
+        <h5>Author: {{i.author}}</h5>
+        <h5>Id: {{i.id}}</h5>
+    </li>
+</ul>
+
+```
+
+*ngFor is a repeater directive. This allows us to repeat an element in a list. 'i' describes an iterator variable. displayBook is the property we use to equate the BOOK array.
+
+## Checkpoint!
+
+Notice that editing the textbook doesn't edit any of the elements in the list. We want it to edit each value so now we're going to learn how to click on items and generate responses from that
+
+
+### Clicking Components and Editing them
+Add the following to where *ngFor is
+```
+(click)="onSelect(i)"
+```
+
+Then navigate to book.component.ts and add the following
+```
+selectedBook: bookClass;
+
+onSelect(book: bookClass): void {
+    this.selectedBook = book;
+}
+```
+Upon reloading the page we have broken the content. The problem we have now is that selectedBook is equated to bookClass upon loading the page. We're going to need a conditional so that editing information only shows up when we click on a title.
+
+To do this we add *ngIf to the div encapsulating the input boxes
+
+```
+<div *ngIf = "selectedBook">
+<input [(ngModel)]="selectedBook.name" placeholder="name">
+<input [(ngModel)]="selectedBook.author" placeholder="author">
+<input [(ngModel)]="selectedBook.id" placeholder="id">
+</div>
+```
+
+# That's it folks!
+Thank you for coming out, if you have any questions at all feel free to facebook message me, email me at dtravie@gmail.com, or join the ACE [slack](https://uf-ace.slack.com) and you can DM me @dani.
+
+This was adapted from the Tour of Heroes tutorial over at [Angular.io](https://angular.io/tutorial) so thanks to them for coming up with a great way to introduce these concepts!
