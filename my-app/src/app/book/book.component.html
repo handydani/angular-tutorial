@@ -1,20 +1,33 @@
-<!--
-<h1>{{ book.name }}</h1>
-<div>Author: {{book.author}}</div>
-<div>Id: {{book.id}}</div>
-<div>
-    <label>name:
-      <input [(ngModel)]="book.name" placeholder="name">
-    </label>
-</div> -->
 
-<h1>A SONG OF ICE AND FIRE</h1>
+
+
+<div *ngIf = "selectedBook">
+    <h1>{{ selectedBook.name }} Details</h1>
+    <div>Author: {{selectedBook.author}}</div>
+    <div>Id: {{selectedBook.id}}</div>
+
+</div>
+
 <ul class = "asoiaf" >
-    <li *ngFor = "let book of books" (click) = "onSelect(hero)">
+    <li *ngFor = "let book of books"
+        [class.selected]="book === selectedBook"
+        (click) = "onSelect(book)">
         <span class = "tile">
             <h3>Title: {{book.name}} </h3>
-            <h4><div>Author: {{book.author}}</div>
-            <div>Id: {{book.id}}</div></h4>
+            <!-- <h4><div>Author: {{book.author}}</div>
+            <div>Id: {{book.id}}</div></h4> -->
         </span>
     </li>
 </ul>
+<h1>Edit existing information:</h1>
+<div>
+    <label>name:
+      <input [(ngModel)]="selectedBook.name" placeholder="">
+    </label>
+    <label>author:
+      <input [(ngModel)]="selectedBook.author" placeholder="">
+    </label>
+    <label>id:
+      <input [(ngModel)]="selectedBook.id" placeholder="">
+    </label>
+</div>
