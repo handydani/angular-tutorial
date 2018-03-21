@@ -249,6 +249,8 @@ To do this we add *ngIf to the div encapsulating the input boxes
 <input [(ngModel)]="selectedBook.id" placeholder="id">
 </div>
 ```
+## Testing
+spec files are used as a way of unit testing your code. You can run 'ng test' and it'll run whatever tests you define within that file. If you're interested in learning more about this you can find more information here: https://angular.io/guide/testing
 
 # That's it folks!
 Thank you for coming out, if you have any questions at all feel free to facebook message me, email me at dtravie@gmail.com, or join the ACE [slack](https://uf-ace.slack.com) and you can DM me @dani.
