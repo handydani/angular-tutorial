@@ -17,7 +17,10 @@ npm install -g @angular/cli
 ```
 ## Let's take a look at the final product...
 
-
+Open finished-project, then library, and run the following command
+```
+ng serve --open
+```
 
 ## Let's begin!
 Protip, stay consistent with naming conventions, I myself got very confused so I tried my best to use distinct, descriptive names.
